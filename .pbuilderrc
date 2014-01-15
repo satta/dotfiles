@@ -1,0 +1,89 @@
+# Codenamen für Debian Veröffentlichungen
+UNSTABLE_CODENAME="sid"
+TESTING_CODENAME="squeeze"
+STABLE_CODENAME="lenny"
+STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
+
+# Liste von Debianversionen
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
+    "unstable" "testing" "stable")
+
+# Liste von Ubuntuversionen
+UBUNTU_SUITES=("quantal" "precise" "oneiric" "natty" "lucid")
+
+# verwendete Mirrorserver
+DEBIAN_MIRROR="ftp.us.debian.org"
+UBUNTU_MIRROR="mirrors.kernel.org"
+
+# Wenn keine Version gesetzt ist, aus dem changelog auslesen.
+if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
+    DIST=$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')
+    # unstable bei bestimmten Werten verwenden
+    if $(echo "experimental UNRELEASED" | grep -q $DIST); then
+        DIST="$UNSTABLE_CODENAME"
+    fi
+fi
+
+# optional: eine Standarddistribution wählen falls keine Angabe verwendet wird
+# Man kann einen eigenen Standard definieren: ${DIST:="unstable"}
+: ${DIST:="$(lsb_release --short --codename)"}
+
+# optional: den Debianveröffentlichungsstatus in $DIST Namen zuordnen
+case "$DIST" in
+    unstable)
+        DIST="$UNSTABLE_CODENAME"
+        ;;
+    testing)
+        DIST="$TESTING_CODENAME"
+        ;;
+    stable)
+        DIST="$STABLE_CODENAME"
+        ;;
+esac
+
+# optional: die Architektur der setzen, falls keine angegeben ist
+# Man kann seinen eigenen Standard setzen: ${ARCH:="i386"}).
+: ${ARCH:="$(dpkg --print-architecture)"}
+
+NAME="$DIST"
+if [ -n "${ARCH}" ]; then
+    NAME="$NAME-$ARCH"
+    DEBOOTSTRAPOPTS=("--arch" "$ARCH" "${DEBOOTSTRAPOPTS[@]}")
+fi
+BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
+# optional: BASEPATH anstelle von BASETGZ setzen, falls cowbuilder verwendet wird
+# BASEPATH="/var/cache/pbuilder/$NAME/base.cow/"
+DISTRIBUTION="$DIST"
+BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
+APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
+BUILDPLACE="/var/cache/pbuilder/build/"
+
+if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
+    # Debian Konfiguration
+    MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
+    COMPONENTS="main contrib non-free"
+    # Dies aktiviert backports für die Debian stable Veröffentlichung
+    if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
+        EXTRAPACKAGES="$EXTRAPACKAGES debian-backports-keyring"
+        OTHERMIRROR="$OTHERMIRROR | deb http://www.backports.org/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
+    fi
+elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
+    # Ubuntu Konfiguration
+    MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
+    COMPONENTS="main restricted universe multiverse"
+else
+    echo "Unknown distribution: $DIST"
+    exit 1
+fi
+
+EXTRAPACKAGES="
+ debhelper
+ ccache
+ hardening-wrapper
+ lintian
+ fakeroot
+"
+
+HOOKDIR=~/.pbuilder/build-hooks-$DIST
+#AUTO_DEBSIGN=${AUTO_DEBSIGN:-yes}
+
