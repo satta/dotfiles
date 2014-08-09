@@ -6,6 +6,8 @@ HISTSIZE=10000
 SAVEHIST=0
 bindkey -e
 
+#source $HOME/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
+
 autoload -Uz compinit
 compinit
 autoload -Uz colors
@@ -31,13 +33,17 @@ alias sau='sudo aptitude update; sudo aptitude safe-upgrade;'
 alias sasu='sudo aptitude safe-upgrade'
 alias safu='sudo aptitude full-upgrade'
 alias kf='killall -q firefox ; killall -q firefox-bin'
-alias wea='weather -v EDDH'
 alias enable-hooks='cp /home/satta/uni/gt/scripts/pre-commit /home/satta/uni/gt/.git/hooks'
 alias disable-hooks='rm /home/satta/uni/gt/.git/hooks/pre-commit'
 alias cchr='rm -rf .config/google-chrome; rm -rf .cache/google-chrome; rm -rf .config/chromium; rm -rf .cache/chromium'
 alias lintian='lintian --info --display-info --display-experimental --pedantic --show-overrides --color auto --profile debian'
 alias a2man='a2x --doctype manpage --format manpage'
 #alias git=hub
+alias dmesg='dmesg -T'
+alias svn-b='svn-buildpackage -us -uc --svn-ignore'
+alias svn-br='svn-b --svn-dont-purge --svn-reuse'
+alias svn-bt='svn-buildpackage --svn-tag'
+alias pbuilder-update='sudo DIST=sid pbuilder --update' 
 
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -73,8 +79,9 @@ export VALGRIND_OPTS="--num-callers=30 --read-var-info=yes"
 DEBEMAIL="satta@tetrinetsucht.de"
 DEBFULLNAME="Sascha Steinbiss"
 export DEBEMAIL DEBFULLNAME
-export DEBSIGN_KEYID=0x04A3610B
-export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
+export DEBSIGN_KEYID=04A3610B
+export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
+#export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 
 # error error when unset variables are used
 set -u
