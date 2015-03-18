@@ -43,7 +43,7 @@ alias dmesg='dmesg -T'
 alias svn-b='svn-buildpackage -us -uc --svn-ignore'
 alias svn-br='svn-b --svn-dont-purge --svn-reuse'
 alias svn-bt='svn-buildpackage --svn-tag'
-alias pbuilder-update='sudo DIST=sid pbuilder --update' 
+alias pbuilder-update='sudo DIST=sid pbuilder --update'
 
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -57,7 +57,7 @@ bindkey ";5D" backward-word
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 
-export PATH=$PATH:$HOME/uni/vstree/bin/i686-pc-linux-gnu:$HOME/bin:$HOME/uni/research/bin:$HOME/code/android-sdk/tools:$HOME/uni/lehre/repo/bin
+export PATH=$PATH:$HOME/.rbenv/bin:$HOME/uni/vstree/bin/i686-pc-linux-gnu:$HOME/bin:$HOME/uni/research/bin:$HOME/code/android-sdk/tools:$HOME/uni/lehre/repo/bin
 export GTDIR=$HOME/uni/gt
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/rubylib:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
@@ -67,7 +67,7 @@ export PROJECT=/home/satta/uni/projects
 export CC="ccache gcc"
 export CPP="ccache cpp"
 export CXX="ccache g++"
-PERL5LIB=$PERL5LIB:${HOME}/uni/lehre/repo/etc/lehre/Admin/Perldir
+PERL5LIB=$PERL5LIB:${HOME}/uni/lehre/repo/etc/lehre/Admin/Perldir:${HOME}/GAL_0.2.2/lib
 PERL5LIB=${PERL5LIB}:${HOME}/uni/gtperl
 export PERL5LIB
 export TEXINPUTS=.:${HOME}/uni/zeugs/Briefvorlage:${HOME}/uni/lehre/repo/etc/texinputs//:$TEXINPUTS:${HOME}/.texmf::
@@ -121,7 +121,7 @@ precmd () {print -Pn "\e]0;%n@%m\a"}
 # turn off flow control
 stty -ixon
 # turn off beep
-setterm -bfreq 0
+#setterm -bfreq 0
 
 
 gt=/home/satta/uni/gt
@@ -145,7 +145,7 @@ debmed=/home/satta/uni/debian-work
     fi
   fi
 }
-} >/dev/null 2>/dev/null 
+} >/dev/null 2>/dev/null
 
 #function _update_ps1()
 #{
