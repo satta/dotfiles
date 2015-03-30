@@ -1,0 +1,11 @@
+*.iso
+Downloads
+f
+Dropbox
+.ccache
+.cache
+zeitgeist
+VirtualBox*
+.macromedia
+*.xbel
+.xsession*
