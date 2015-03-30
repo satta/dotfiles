@@ -6,8 +6,6 @@ HISTSIZE=10000
 SAVEHIST=0
 bindkey -e
 
-#source $HOME/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
-
 autoload -Uz compinit
 compinit
 autoload -Uz colors
@@ -57,33 +55,28 @@ bindkey ";5D" backward-word
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 
-export PATH=$PATH:$HOME/.rbenv/bin:$HOME/uni/vstree/bin/i686-pc-linux-gnu:$HOME/bin:$HOME/uni/research/bin:$HOME/code/android-sdk/tools:$HOME/uni/lehre/repo/bin
+export PATH=$PATH:$HOME/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
 export GTDIR=$HOME/uni/gt
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/rubylib:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
 export LD_LIBRARY_PATH=$GTDIR/lib:$LD_LIBRARY_PATH
-export PROJECT=/home/satta/uni/projects
 export CC="ccache gcc"
 export CPP="ccache cpp"
 export CXX="ccache g++"
-PERL5LIB=$PERL5LIB:${HOME}/uni/lehre/repo/etc/lehre/Admin/Perldir:${HOME}/GAL_0.2.2/lib
-PERL5LIB=${PERL5LIB}:${HOME}/uni/gtperl
-export PERL5LIB
+export PERL5LIB=$PERL5LIB:${HOME}/uni/lehre/repo/etc/lehre/Admin/Perldir:${HOME}/GAL_0.2.2/lib
 export TEXINPUTS=.:${HOME}/uni/zeugs/Briefvorlage:${HOME}/uni/lehre/repo/etc/texinputs//:$TEXINPUTS:${HOME}/.texmf::
 export BIBINPUTS=.:$HOME/uni/bibinputs/:$BIBINPUTS
 export GTTESTDATA=${HOME}/uni/gttestdata
 export gt_prefix=/${HOME}/uni/installed
-#export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 export VALGRIND_OPTS="--num-callers=30 --read-var-info=yes"
-DEBEMAIL="satta@tetrinetsucht.de"
-DEBFULLNAME="Sascha Steinbiss"
-export DEBEMAIL DEBFULLNAME
+export DEBEMAIL="satta@tetrinetsucht.de"
+export DEBFULLNAME="Sascha Steinbiss"
 export DEBSIGN_KEYID=04A3610B
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 
-# error error when unset variables are used
+# error when unset variables are used
 set -u
 
 # Set a nice git-prompt (calls git_status())
@@ -123,15 +116,9 @@ stty -ixon
 # turn off beep
 #setterm -bfreq 0
 
-
 gt=/home/satta/uni/gt
 research=/home/satta/uni/research
 teaching=/home/satta/lehre/repo
-diss=/home/satta/uni/promotion/diss
-debmed=/home/satta/uni/debian-work
-
-
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
 {
 [ "_$TERM" = "_xterm" ] && type ldd && type grep && type tput && [ -L "/proc/$PPID/exe" ] && {
@@ -146,12 +133,3 @@ debmed=/home/satta/uni/debian-work
   fi
 }
 } >/dev/null 2>/dev/null
-
-#function _update_ps1()
-#{
-#  export PROMPT="$(~/bin/powerline-zsh.py $?)"
-#}
-#precmd()
-#{
-#  _update_ps1
-#}
