@@ -1,0 +1,18 @@
+auto-reload								yes 
+reload-time								10
+reload-threads						10 
+notify-xterm							yes 
+notify-screen							yes 
+notify-format							""
+browser										x-www-browser
+refresh-on-startup				no
+user-agent								"newsbeuter"
+
+#proxy proxy.uni-hamburg.de:3128
+
+feedlist-format     "%4i %n (%7T) %11u %t"
+
+highlight article "^(Feed|Title|Author|Link|Date):" default default  underline bold
+highlight articlelist "transpos" green default default default
+highlight feedlist ".* N .*" color160 default default default
+#highlight feedlist ".* N .*" color160
