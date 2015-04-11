@@ -34,6 +34,13 @@ alias svn-b='svn-buildpackage -us -uc --svn-ignore'
 alias svn-br='svn-b --svn-dont-purge --svn-reuse'
 alias svn-bt='svn-buildpackage --svn-tag'
 alias pbuilder-update='sudo DIST=sid pbuilder --update'
+alias dockerkillall='docker kill $(docker ps -q)'
+# Delete all stopped containers.
+alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+# Delete all untagged images.
+alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+# Delete all stopped containers and untagged images.
+alias dockerclean='dockercleanc || true && dockercleani'
 
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
