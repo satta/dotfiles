@@ -25,7 +25,6 @@ alias -g '....'='../../..'
 alias ssh='ssh -Y'
 alias ll='ls -Al'
 alias vg='valgrind --leak-check=full'
-alias sau='sudo aptitude update; sudo aptitude safe-upgrade;'
 alias enable-hooks='cp /home/satta/uni/gt/scripts/pre-commit /home/satta/uni/gt/.git/hooks'
 alias disable-hooks='rm /home/satta/uni/gt/.git/hooks/pre-commit'
 alias lintian='lintian --info --display-info --display-experimental --pedantic --show-overrides --color auto --profile debian'
@@ -42,6 +41,10 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
 
+export DOCKER_CERT_PATH=/Users/satta/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
@@ -54,6 +57,8 @@ bindkey ";5D" backward-word
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH=$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
 export GTDIR=$HOME/uni/gt
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/rubylib:$HOME/uni/lehre/repo/lib:$RUBYLIB
@@ -107,27 +112,10 @@ export EDITOR=/usr/bin/vi
 
 precmd () {print -Pn "\e]0;%n@%m\a"}
 
-#trap 'echo -ne "\033[1;31m"✕\\n' INT
-
 # turn off flow control
 stty -ixon
 # turn off beep
 #setterm -bfreq 0
 
-gt=/home/satta/uni/gt
-research=/home/satta/uni/research
-teaching=/home/satta/lehre/repo
-
-{
-[ "_$TERM" = "_xterm" ] && type ldd && type grep && type tput && [ -L "/proc/$PPID/exe" ] && {
-  if ldd /proc/$PPID/exe | grep libvte; then
-    if [ "`tput -Tgnome-256color colors`" = "256" ]; then
-      TERM=gnome-256color
-    elif [ "`tput -Txterm-256color colors`" = "256" ]; then
-      TERM=xterm-256color
-    elif tput -T gnome; then
-      TERM=gnome
-    fi
-  fi
-}
-} >/dev/null 2>/dev/null
+gt=/Users/satta/uni/gt
+research=/Users/satta/uni/research
