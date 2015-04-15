@@ -59,7 +59,7 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export PATH=$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
+export PATH=/usr/local/sbin:$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
 export GTDIR=$HOME/uni/gt
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/rubylib:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
