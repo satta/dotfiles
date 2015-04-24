@@ -61,14 +61,14 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH=/usr/local/sbin:$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
 export GTDIR=$HOME/uni/gt
-export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/rubylib:$HOME/uni/lehre/repo/lib:$RUBYLIB
+export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
 export LD_LIBRARY_PATH=$GTDIR/lib:$LD_LIBRARY_PATH
 export CC="ccache gcc"
 export CPP="ccache cpp"
 export CXX="ccache g++"
-export PERL5LIB=$PERL5LIB:${HOME}/uni/lehre/repo/etc/lehre/Admin/Perldir:${HOME}/GAL_0.2.2/lib
+export PERL5LIB=$PERL5LIB:${HOME}/GAL_0.2.2/lib
 export TEXINPUTS=.:${HOME}/uni/lehre/repo/etc/texinputs//:$TEXINPUTS:${HOME}/.texmf::
 export BIBINPUTS=.:$HOME/uni/bibinputs/:$BIBINPUTS
 export GTTESTDATA=${HOME}/uni/gttestdata
@@ -78,6 +78,7 @@ export DEBFULLNAME="Sascha Steinbiss"
 export DEBSIGN_KEYID=04A3610B
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
+export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 
 # error when unset variables are used
 set -u
