@@ -40,7 +40,7 @@ alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm 
 alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
-alias brew-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
+alias brew-cask-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
 export DOCKER_CERT_PATH=/Users/satta/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
