@@ -108,7 +108,7 @@ git_status() {
   echo $output
 }
 
-export PS1='[%n@%m:%{$fg_bold[yellow]%}%0(4c,%2c,%~)%{$reset_color%}] ◇ '
+export PS1='[%n@%m:%{$fg_bold[yellow]%}%0(4c,%2c,%~)%{$reset_color%}] $ '
 export RPS1='$(git_prompt_info)[%?]'
 export EDITOR=/usr/bin/vi
 
