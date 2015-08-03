@@ -25,8 +25,8 @@ alias -g '....'='../../..'
 alias ssh='ssh -Y'
 alias ll='ls -Al'
 alias vg='valgrind --leak-check=full --track-origins=yes --dsymutil=yes'
-alias enable-hooks='cp /home/satta/uni/gt/scripts/pre-commit /home/satta/uni/gt/.git/hooks'
-alias disable-hooks='rm /home/satta/uni/gt/.git/hooks/pre-commit'
+alias enable-hooks="cp $HOME/uni/gt/scripts/pre-commit $HOME/uni/gt/.git/hooks"
+alias disable-hooks="rm $HOME/uni/gt/.git/hooks/pre-commit"
 alias lintian='lintian --info --display-info --display-experimental --pedantic --show-overrides --color auto --profile debian'
 alias a2man='a2x --doctype manpage --format manpage'
 alias svn-b='svn-buildpackage -us -uc --svn-ignore'
@@ -42,7 +42,7 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 alias dockerclean='dockercleanc || true && dockercleani'
 alias brew-cask-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
-export DOCKER_CERT_PATH=/Users/satta/.boot2docker/certs/boot2docker-vm
+export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export HOMEBREW_CASK_OPTS="--appdir=~/MyApplications"
@@ -120,5 +120,5 @@ stty -ixon
 # turn off beep
 #setterm -bfreq 0
 
-gt=/Users/satta/uni/gt
+gt=$GTDIR
 research=/Users/satta/uni/research
