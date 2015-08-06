@@ -122,3 +122,10 @@ stty -ixon
 
 gt=$GTDIR
 research=/Users/satta/uni/research
+
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#  which caffeinate &>/dev/null
+#  if [ $? -eq 0 ]; then
+#    { caffeinate & } 2>/dev/null
+#  fi
+#fi
