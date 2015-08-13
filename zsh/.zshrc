@@ -42,9 +42,6 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 alias dockerclean='dockercleanc || true && dockercleani'
 alias brew-cask-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
-export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
 export HOMEBREW_CASK_OPTS="--appdir=~/MyApplications"
 
 if [ -x /usr/bin/dircolors ]; then
@@ -129,3 +126,5 @@ research=/Users/satta/uni/research
 #    { caffeinate & } 2>/dev/null
 #  fi
 #fi
+# eval "$(rbenv init -)"
+$(boot2docker shellinit 2>/dev/null)

@@ -2,7 +2,6 @@
   email = sascha@steinbiss.name
   name = Sascha Steinbiss
 [gui]
-  recentrepo = /home/satta/uni/gt
 [color]
   branch = auto
   diff = auto
