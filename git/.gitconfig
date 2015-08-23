@@ -34,3 +34,7 @@
   today = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --after="yesterday" --abbrev-commit --
 [push]
 	default = matching
+[github]
+	user = satta
+[ghi]
+	token = !security find-internet-password -a satta -s github.com -l 'ghi token' -w
