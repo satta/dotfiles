@@ -32,7 +32,6 @@ alias a2man='a2x --doctype manpage --format manpage'
 alias svn-b='svn-buildpackage -us -uc --svn-ignore'
 alias svn-br='svn-b --svn-dont-purge --svn-reuse'
 alias svn-bt='svn-buildpackage --svn-tag'
-alias pbuilder-update='sudo DIST=sid pbuilder --update'
 alias dockerkillall='docker kill $(docker ps -q)'
 # Delete all stopped containers.
 alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
@@ -63,7 +62,6 @@ export PATH=/usr/local/sbin:$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$H
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
-export LD_LIBRARY_PATH=$GTDIR/lib:$LD_LIBRARY_PATH
 export CC="ccache gcc"
 export CPP="ccache cpp"
 export CXX="ccache g++"
