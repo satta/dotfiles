@@ -40,6 +40,7 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
 alias brew-cask-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
+alias svn-cowbuildpackage="svn-buildpackage --svn-builder='pdebuild --pbuilder cowbuilder --buildresult ..' --svn-lintian"
 
 export HOMEBREW_CASK_OPTS="--appdir=~/MyApplications"
 
