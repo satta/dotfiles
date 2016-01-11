@@ -63,15 +63,12 @@ export PATH=/usr/local/opt/ccache/libexec:/usr/local/sbin:$PATH:$HOME/bin:$GTDIR
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
-export CC="ccache gcc"
-export CPP="ccache cpp"
-export CXX="ccache g++"
 export PERL5LIB=$PERL5LIB:${HOME}/GAL_0.2.2/lib
 export TEXINPUTS=.:${HOME}/uni/lehre/repo/etc/texinputs//:$TEXINPUTS:${HOME}/.texmf::
 export BIBINPUTS=.:$HOME/uni/bibinputs/:$BIBINPUTS
 export GTTESTDATA=${HOME}/uni/gttestdata
 export VALGRIND_OPTS="--num-callers=30 --read-var-info=yes"
-export DEBEMAIL="satta@tetrinetsucht.de"
+export DEBEMAIL="sascha@steinbiss.name"
 export DEBFULLNAME="Sascha Steinbiss"
 export DEBSIGN_KEYID=04A3610B
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
