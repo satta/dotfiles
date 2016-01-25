@@ -1,6 +1,7 @@
 [user]
   email = sascha@steinbiss.name
   name = Sascha Steinbiss
+  signingkey = 04A3610B
 [apply]
   whitespace=error
 [color]
