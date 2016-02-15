@@ -70,7 +70,7 @@ export GTTESTDATA=${HOME}/uni/gttestdata
 export VALGRIND_OPTS="--num-callers=30 --read-var-info=yes"
 export DEBEMAIL="sascha@steinbiss.name"
 export DEBFULLNAME="Sascha Steinbiss"
-export DEBSIGN_KEYID=04A3610B
+export DEBSIGN_KEYID="F09F4872!"
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
