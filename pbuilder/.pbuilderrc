@@ -1,79 +1,90 @@
-# Codenamen für Debian Veröffentlichungen
 UNSTABLE_CODENAME="sid"
 TESTING_CODENAME="stretch"
 STABLE_CODENAME="jessie"
 STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 
-# Liste von Debianversionen
-DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
+# List of Debian suites.
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $STABLE_BACKPORTS_SUITE
     "unstable" "testing" "stable")
 
-# Liste von Ubuntuversionen
-UBUNTU_SUITES=("quantal" "precise" "oneiric" "natty" "lucid")
+# List of Ubuntu suites. Update these when needed.
+UBUNTU_SUITES=("vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
-# verwendete Mirrorserver
-DEBIAN_MIRROR="httpredir.debian.org"
+# Mirrors to use. Update these to your preferred mirror.
+DEBIAN_MIRROR="ftp.us.debian.org"
 UBUNTU_MIRROR="mirrors.kernel.org"
 
-# optional: eine Standarddistribution wählen falls keine Angabe verwendet wird
-# Man kann einen eigenen Standard definieren: ${DIST:="unstable"}
-: ${DIST:="$(lsb_release --short --codename)"}
+# Optionally use the changelog of a package to determine the suite to use if
+# none set.
+if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
+    DIST=$(dpkg-parsechangelog --show-field=Distribution)
+    # Use the unstable suite for Debian experimental packages.
+    if [ "${DIST}" == "experimental" ]; then
+        DIST="unstable"
+    fi
+fi
 
-# optional: den Debianveröffentlichungsstatus in $DIST Namen zuordnen
+# Optionally set a default distribution if none is used. Note that you can set
+# your own default (i.e. ${DIST:="unstable"}).
+# DIST:="unstable"
+
+# Optionally change Debian codenames in $DIST to their aliases.
 case "$DIST" in
-    unstable)
-        DIST="$UNSTABLE_CODENAME"
+    $UNSTABLE_CODENAME)
+        DIST="unstable"
         ;;
-    testing)
-        DIST="$TESTING_CODENAME"
+    $TESTING_CODENAME)
+        DIST="testing"
         ;;
-    stable)
-        DIST="$STABLE_CODENAME"
+    $STABLE_CODENAME)
+        DIST="stable"
         ;;
 esac
 
-# optional: die Architektur der setzen, falls keine angegeben ist
-# Man kann seinen eigenen Standard setzen: ${ARCH:="i386"}).
-: ${ARCH:="$(dpkg --print-architecture)"}
+# Optionally set the architecture to the host architecture if none set. Note
+# that you can set your own default (i.e. ${ARCH:="i386"}).
+# ARCH:="$(dpkg --print-architecture)"
 
 NAME="$DIST"
 if [ -n "${ARCH}" ]; then
     NAME="$NAME-$ARCH"
     DEBOOTSTRAPOPTS=("--arch" "$ARCH" "${DEBOOTSTRAPOPTS[@]}")
 fi
-BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
-# optional: BASEPATH anstelle von BASETGZ setzen, falls cowbuilder verwendet wird
-# BASEPATH="/var/cache/pbuilder/$NAME/base.cow/"
+BASEPATH="/var/cache/pbuilder/base-$NAME.cow"
 DISTRIBUTION="$DIST"
 BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
+sudo mkdir -p /var/cache/pbuilder/ccache
+sudo chmod 777 /var/cache/pbuilder/ccache
+export CCACHE_DIR="/var/cache/pbuilder/ccache"
+export PATH="/usr/lib/ccache:${PATH}"
+OTHERMIRROR="deb [trusted=yes] file:///home/vagrant/_pbuilder_local_deps ./"
+BINDMOUNTS="/home/vagrant/_pbuilder_local_deps /dev/shm ${CCACHE_DIR}"
+
+EXTRAPACKAGES="
+ debhelper
+ lintian
+ fakeroot
+ apt-utils
+ ccache
+"
+
+HOOKDIR=$HOME/.pbuilder/build-hooks
 
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
-    # Debian Konfiguration
+    # Debian configuration
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
     COMPONENTS="main contrib non-free"
-    # Dies aktiviert backports für die Debian stable Veröffentlichung
     if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
-        EXTRAPACKAGES="$EXTRAPACKAGES debian-backports-keyring"
-        OTHERMIRROR="$OTHERMIRROR | deb http://http.debian.net/debian $STABLE_BACKPORTS_SUITE $COMPONENTS"
+        OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $STABLE_BACKPORTS_SUITE $COMPONENTS"
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
-    # Ubuntu Konfiguration
+    # Ubuntu configuration
     MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
     COMPONENTS="main restricted universe multiverse"
 else
     echo "Unknown distribution: $DIST"
     exit 1
 fi
-
-EXTRAPACKAGES="
- debhelper
- ccache
- lintian
- fakeroot
-"
-
-HOOKDIR=~/.pbuilder/build-hooks-$DIST
-#AUTO_DEBSIGN=${AUTO_DEBSIGN:-yes}
 
