@@ -73,7 +73,7 @@ export DEBFULLNAME="Sascha Steinbiss"
 export DEBSIGN_KEYID="F09F4872!"
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
-export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+#export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 
 # error when unset variables are used
 set -u
