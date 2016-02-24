@@ -41,4 +41,4 @@
 [ghi]
   token = !security find-internet-password -a satta -s github.com -l 'ghi token' -w
 [transfer]
-	fsckobjects = true
+  fsckobjects = true
