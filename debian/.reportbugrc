@@ -10,7 +10,7 @@ ui text
 #offline
 # name and email setting (if non-default)
 # realname "Sascha Steinbiss"
-email "satta@tetrinetsucht.de"
+email "sascha@steinbiss.name"
 # Send all outgoing mail via the following host
 smtphost "mail.tetrinetsucht.de"
 smtpuser "satta"
