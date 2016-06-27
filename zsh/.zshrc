@@ -63,16 +63,17 @@ export PATH=/usr/local/opt/ccache/libexec:/usr/local/sbin:$PATH:$HOME/bin:$GTDIR
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
-#export PERL5LIB=$PERL5LIB:${HOME}/GAL_0.2.2/lib
+export PERL5LIB=${HOME}/GAL_0.2.2/lib:
 export TEXINPUTS=.:${HOME}/uni/lehre/repo/etc/texinputs//:$TEXINPUTS:${HOME}/.texmf::
 export BIBINPUTS=.:$HOME/uni/bibinputs/:$BIBINPUTS
 export GTTESTDATA=${HOME}/uni/gttestdata
 export VALGRIND_OPTS="--num-callers=30 --read-var-info=yes"
-export DEBEMAIL='sascha@steinbiss.name'
+export DEBEMAIL='satta@debian.org'
 export DEBFULLNAME='Sascha Steinbiss'
 export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 #export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+export USCAN_SYMLINK=rename
 
 # error when unset variables are used
 set -u
@@ -122,4 +123,3 @@ research=/Users/satta/uni/research
 #  fi
 #fi
 # eval "$(rbenv init -)"
-$(boot2docker shellinit 2>/dev/null)
