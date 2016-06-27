@@ -5,7 +5,7 @@ STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 
 # List of Debian suites.
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $STABLE_BACKPORTS_SUITE
-    "unstable" "testing" "stable")
+    "unstable" "testing" "stable" "experimental")
 
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
@@ -63,12 +63,7 @@ OTHERMIRROR="deb [trusted=yes] file:///home/vagrant/_pbuilder_local_deps ./"
 #BINDMOUNTS="/home/vagrant/_pbuilder_local_deps /dev/shm ${CCACHE_DIR}"
 BINDMOUNTS="/home/vagrant/_pbuilder_local_deps /dev/shm"
 
-EXTRAPACKAGES="
- debhelper
- lintian
- fakeroot
- apt-utils
-"
+EXTRAPACKAGES="debhelper lintian fakeroot apt-utils"
 
 HOOKDIR=$HOME/.pbuilder/build-hooks
 
