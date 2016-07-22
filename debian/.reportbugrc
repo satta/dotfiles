@@ -9,8 +9,8 @@ ui text
 # offline setting - comment out to be online
 #offline
 # name and email setting (if non-default)
-# realname "Sascha Steinbiss"
-email "sascha@steinbiss.name"
+realname "Sascha Steinbiss"
+email "satta@debian.org"
 # Send all outgoing mail via the following host
 smtphost "mail.tetrinetsucht.de"
 smtpuser "satta"
