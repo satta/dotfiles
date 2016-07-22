@@ -158,3 +158,11 @@ method = ftp
 allow_unsigned_uploads = 0
 # Allow uploads for UNRELEASED packages
 allowed_distributions = .*
+
+[reproducible]
+fqdn                    = alioth.debian.org
+incoming                = /home/groups/reproducible/htdocs/debian/
+method                  = scp
+allow_dcut              = 0
+allow_unsigned_uploads  = 0
+allowed_distributions   = .*
