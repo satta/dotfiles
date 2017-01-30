@@ -44,6 +44,7 @@ alias svn-cowbuildpackage="svn-buildpackage --svn-builder='pdebuild --pbuilder c
 alias update-repro="sudo DIST=sid cowbuilder --update --distribution sid --basepath /var/cache/pbuilder/base-reproducible.cow"
 
 export HOMEBREW_CASK_OPTS="--appdir=~/MyApplications"
+export DEB_BUILD_OPTIONS="parallel=3"
 
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -75,6 +76,9 @@ export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 #export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 export USCAN_SYMLINK=rename
+export GPG_TTY=$(tty)
+export GOPATH=${HOME}/golang
+
 
 # error when unset variables are used
 set -u

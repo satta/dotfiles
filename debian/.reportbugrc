@@ -3,7 +3,7 @@
 # Version of reportbug this preferences file was written by
 reportbug_version "6.3.1ubuntu1"
 # default operating mode: one of: novice, standard, advanced, expert
-mode novice
+mode standard
 # default user interface
 ui text
 # offline setting - comment out to be online
@@ -12,7 +12,7 @@ ui text
 realname "Sascha Steinbiss"
 email "satta@debian.org"
 # Send all outgoing mail via the following host
-smtphost "mail.tetrinetsucht.de"
+smtphost "steinbiss.name"
 smtpuser "satta"
 #smtppasswd "my password here"
 # Enable TLS for the SMTP host
