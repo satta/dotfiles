@@ -62,7 +62,7 @@ BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
 #sudo mkdir -p /var/cache/pbuilder/ccache
-#sudo chmod 777 /var/cache/pbuilder/ccache
+#sudo chmod -R 777 /var/cache/pbuilder/ccache
 #export CCACHE_DIR="/var/cache/pbuilder/ccache"
 #export PATH="/usr/lib/ccache:${PATH}"
 OTHERMIRROR="deb [trusted=yes] file:///home/vagrant/_pbuilder_local_deps ./"
