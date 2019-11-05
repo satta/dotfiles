@@ -2,7 +2,7 @@
 # This file is in perl(1) format - see caff(1) for details.
 
 $CONFIG{'owner'} = 'Sascha Steinbiss';
-$CONFIG{'email'} = 'sascha@steinbiss.name';
+$CONFIG{'email'} = 'satta@debian.org';
 
 # You can get your long keyid from
 #   gpg --keyid-format long --list-key <yourkeyid|name|emailaddress..>

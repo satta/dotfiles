@@ -44,6 +44,7 @@ alias svn-cowbuildpackage="svn-buildpackage --svn-builder='pdebuild --pbuilder c
 alias update-repro="sudo DIST=sid cowbuilder --update --distribution sid --basepath /var/cache/pbuilder/base-reproducible.cow"
 
 export HOMEBREW_CASK_OPTS="--appdir=~/MyApplications"
+export DEB_BUILD_OPTIONS="parallel=3"
 
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -59,8 +60,9 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+export GOPATH=${HOME}/golang
 export GTDIR=$HOME/uni/gt
-export PATH=/usr/local/opt/ccache/libexec:/usr/local/sbin:$PATH:$HOME/bin:$GTDIR/bin:$HOME/uni/research/bin:$HOME/uni/lehre/repo/bin
+export PATH=/usr/local/opt/ccache/libexec:/usr/local/sbin:$HOME/bin:$GOPATH/bin:$PATH
 export RUBYLIB=$HOME/uni/research/lib:$GTDIR/gtruby:$HOME/uni/lehre/repo/lib:$RUBYLIB
 export GTRUBY=$GTDIR/gtruby
 export PYTHONPATH=$GTDIR/gtpython:${HOME}/lib/python:$PYTHONPATH
@@ -75,6 +77,9 @@ export DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc"
 #export CGL_SO_SOURCE=${HOME}/uni/ontology/so.obo
 #export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 export USCAN_SYMLINK=rename
+export GPG_TTY=$(tty)
+export GOPATH=${HOME}/golang
+
 
 # error when unset variables are used
 set -u
@@ -124,3 +129,6 @@ research=/Users/satta/uni/research
 #  fi
 #fi
 # eval "$(rbenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

@@ -7,8 +7,7 @@ OLDSTABLE_BACKPORTS_SUITE="$OLDSTABLE_CODENAME-backports"
 USENETWORK=yes
 
 # List of Debian suites.
-DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $OLDSTABLE_CODENAME $STABLE_BACKPORTS_SUITE $OLDSTABLE_BACKPORTS_SUITE
-    "unstable" "testing" "stable" "oldstable" "experimental")
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $OLDSTABLE_CODENAME $STABLE_BACKPORTS_SUITE $OLDSTABLE_BACKPORTS_SUITE "unstable" "testing" "stable" "oldstable" "experimental")
 
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
