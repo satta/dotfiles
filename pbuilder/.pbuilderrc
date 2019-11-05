@@ -1,11 +1,14 @@
 UNSTABLE_CODENAME="sid"
-TESTING_CODENAME="stretch"
-STABLE_CODENAME="jessie"
+TESTING_CODENAME="bullseye"
+STABLE_CODENAME="buster"
+OLDSTABLE_CODENAME="stretch"
 STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
+OLDSTABLE_BACKPORTS_SUITE="$OLDSTABLE_CODENAME-backports"
+USENETWORK=yes
 
 # List of Debian suites.
-DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $STABLE_BACKPORTS_SUITE
-    "unstable" "testing" "stable" "experimental")
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $OLDSTABLE_CODENAME $STABLE_BACKPORTS_SUITE $OLDSTABLE_BACKPORTS_SUITE
+    "unstable" "testing" "stable" "oldstable" "experimental")
 
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
@@ -39,6 +42,9 @@ case "$DIST" in
     $STABLE_CODENAME)
         DIST="stable"
         ;;
+    $OLDSTABLE_CODENAME)
+        DIST="oldstable"
+        ;;
 esac
 
 # Optionally set the architecture to the host architecture if none set. Note
@@ -71,7 +77,9 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     # Debian configuration
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
     COMPONENTS="main contrib non-free"
-    if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
+    if $(echo "$OLDSTABLE_CODENAME oldstable" | grep -q $DIST); then
+        OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $OLDSTABLE_BACKPORTS_SUITE $COMPONENTS"
+    elif $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
         OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $STABLE_BACKPORTS_SUITE $COMPONENTS"
     fi
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
