@@ -69,7 +69,7 @@ OTHERMIRROR="deb [trusted=yes] file:///home/vagrant/_pbuilder_local_deps ./"
 #BINDMOUNTS="/home/vagrant/_pbuilder_local_deps /dev/shm ${CCACHE_DIR}"
 BINDMOUNTS="/home/vagrant/_pbuilder_local_deps /dev/shm"
 
-EXTRAPACKAGES="debhelper lintian fakeroot apt-utils"
+EXTRAPACKAGES="debhelper fakeroot apt-utils"
 
 HOOKDIR=$HOME/.pbuilder/build-hooks
 
