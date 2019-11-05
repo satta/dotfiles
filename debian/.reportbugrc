@@ -12,8 +12,8 @@ ui text
 # realname "Sascha Steinbiss"
 email "satta@debian.org"
 # Send all outgoing mail via the following host
-smtphost "steinbiss.name"
-smtpuser "satta"
+smtphost "smtp.mailbox.org"
+smtpuser "satta@mailbox.org"
 #smtppasswd "my password here"
 # Enable TLS for the SMTP host
 smtptls
