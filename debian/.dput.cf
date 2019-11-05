@@ -14,7 +14,7 @@ scp_compress		= 0
 post_upload_command	=
 pre_upload_command	=
 passive_ftp		= 1
-default_host_main	= ftp-master
+default_host_main	= ssh-upload
 allowed_distributions	= (?!UNRELEASED)
 progress_indicator	= 2
 
@@ -138,15 +138,6 @@ fqdn = ppa.launchpad.net
 login = anonymous
 method = ftp
 allow_unsigned_uploads = 0
-
-[mentors]
-fqdn = mentors.debian.net
-incoming = /upload
-method = http
-allow_unsigned_uploads = 0
-progress_indicator = 2
-# Allow uploads for UNRELEASED packages
-allowed_distributions = .*
 
 [mentors-ftp]
 fqdn = mentors.debian.net
